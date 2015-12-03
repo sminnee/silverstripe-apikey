@@ -15,8 +15,9 @@ How it works
 Limitations
 -----------
 
- * Doesn't actually exist yet, I've just written the readme.
  * You can't limit the rights that the API key has to be more granular than "all rights of the given user".
+ * Keys can't be disabled, only deleted
+ * No support for storing encrypted ("read-once") keys
 
 Status
 ------

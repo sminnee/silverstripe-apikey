@@ -1,0 +1,11 @@
+---
+Name: apikey
+---
+Member:
+  extensions:
+    - ApiKeyMemberExtension
+Injector:
+  RequestProcessor:
+    properties:
+      filters:
+        - '%$ApiKeyRequestFilter'

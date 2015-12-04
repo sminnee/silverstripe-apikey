@@ -4,8 +4,12 @@ Name: apikey
 Member:
   extensions:
     - ApiKeyMemberExtension
+
 Injector:
   RequestProcessor:
     properties:
       filters:
         - '%$ApiKeyRequestFilter'
+
+ApiKeyRequestFilter:
+  header_name: 'X-Api-Key'

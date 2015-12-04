@@ -9,7 +9,10 @@
 class ApiKeyRequestFilter implements RequestFilter {
 
 	public function preRequest(SS_HTTPRequest $request, Session $session, DataModel $model) {
-		if($key = $request->getHeader('X-Api-Key')) {
+
+		$headerName = Config::inst()->get('ApiKeyRequestFilter', 'header_name');
+
+		if($key = $request->getHeader($headerName)) {
 			try {
 				$matchingKey = MemberApiKey::findByKey($key);
 			} catch(LogicException $e) {

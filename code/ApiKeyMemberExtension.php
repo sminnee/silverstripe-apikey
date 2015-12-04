@@ -8,7 +8,10 @@ class ApiKeyMemberExtension extends DataExtension
 	];
 
 	public function updateCMSFields(FieldList $fields) {
-		$gridConfig = $fields->dataFieldByName('ApiKeys')->getConfig();
+		$grid = $fields->dataFieldByName('ApiKeys');
+		if(!$grid) return;
+
+		$gridConfig = $grid->getConfig();
 
 		// Simplify view
 		$gridConfig->removeComponentsByType('GridFieldAddExistingAutocompleter');

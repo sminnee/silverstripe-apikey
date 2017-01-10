@@ -50,6 +50,7 @@
 
 		public function postRequest(SS_HTTPRequest $request, SS_HTTPResponse $response, DataModel $model)
 		{
+
 			if($member = Member::currentUser())
 			{
 				$member->logout();

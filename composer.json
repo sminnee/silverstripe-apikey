@@ -3,7 +3,7 @@
     "description": "API Key management for SilverStripe",
     "type": "silverstripe-module",
     "require": {
-        "silverstripe/framework": "^3.1"
+        "silverstripe/framework": "^4.0@dev"
     },
     "license": "BSD-3-Clause",
     "authors": [
@@ -11,5 +11,17 @@
             "name": "Sam Minnee",
             "email": "sam@silverstripe.com"
         }
-    ]
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Sminnee\\ApiKey\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

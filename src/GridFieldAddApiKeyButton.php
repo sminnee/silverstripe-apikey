@@ -2,11 +2,11 @@
 
 namespace Sminnee\ApiKey;
 
-use MemberApiKey;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_FormAction;
 use SilverStripe\Forms\GridField\GridField_HTMLProvider;
+use Sminnee\ApiKey\MemberApiKey;
 
 /**
  * Adds the API key creation button to a GridField
@@ -43,7 +43,7 @@ class GridFieldAddApiKeyButton implements GridField_HTMLProvider, GridField_Acti
             'addapikey',
             null
         );
-        $button->setAttribute('data-icon', 'add');
+        $button->addExtraClass('btn btn-primary font-icon-plus');
 
         return array(
             $this->targetFragment => $button->Field(),

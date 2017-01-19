@@ -19,6 +19,23 @@ and other APIs.
    request and will return the authenticated member for GraphQL contexts to use, while not applying it to the CMS
    session.
 
+## Regular use
+
+For regular module usage, use the `RequestFilter` class. The configuration to apply it is in this module's `apikey.yml`,
+but is commented out since there is no way to remove it once it is applied.
+
+Copy the configuration and add it to your `mysite/_config/apikey.yml` file.
+
+This will protect all of your frontend routes.
+
+## GraphQL
+
+The GraphQL authenticator will work separately from the `RequestFilter`. If using this module for GraphQL, you will
+probably want to disable the `RequestFilter`. If you run both at the same time you will find that:
+
+ * Authentication exceptions are thrown outside of the GraphQL context (i.e. not wrapped in JSON output)
+ * Successful requests will register two "times used" each, since it's authenticated in two places
+
 ## Limitations
 
  * You can't limit the rights that the API key has to be more granular than "all rights of the given user".

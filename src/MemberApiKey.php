@@ -10,6 +10,8 @@ use SilverStripe\Security\Member;
 
 class MemberApiKey extends DataObject
 {
+    private static $table_name = 'MemberApiKey';
+
     private static $db = [
         'ApiKey' => 'Varchar',
         'LastUsed' => 'DBDatetime',

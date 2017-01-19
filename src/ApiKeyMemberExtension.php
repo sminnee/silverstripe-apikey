@@ -2,7 +2,6 @@
 
 namespace Sminnee\ApiKey;
 
-use MemberApiKey;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
@@ -10,6 +9,7 @@ use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\Forms\GridField\GridFieldDetailForm;
 use SilverStripe\Forms\GridField\GridFieldEditButton;
 use SilverStripe\ORM\DataExtension;
+use Sminnee\ApiKey\MemberApiKey;
 
 class ApiKeyMemberExtension extends DataExtension
 {

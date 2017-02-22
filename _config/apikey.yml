@@ -1,15 +1,24 @@
 ---
 Name: apikey
 ---
-Member:
+SilverStripe\Security\Member:
   extensions:
-    - ApiKeyMemberExtension
+    - Sminnee\ApiKey\ApiKeyMemberExtension
 
-Injector:
-  RequestProcessor:
-    properties:
-      filters:
-        - '%$ApiKeyRequestFilter'
-
-ApiKeyRequestFilter:
+Sminnee\ApiKey\ApiKeyRequestFilter:
   header_name: 'X-Api-Key'
+
+# For regular requests, enable the RequestFilter (not for GraphQL):
+# SilverStripe\Core\Injector\Injector:
+#   SilverStripe\Control\RequestProcessor:
+#     properties:
+#       filters:
+#         - '%$ApiKeyRequestFilter'
+#   ApiKeyRequestFilter:
+#     class: Sminnee\ApiKey\ApiKeyRequestFilter
+
+# For GraphQL requests, use the ApiKeyAuthenticator:
+SilverStripe\GraphQL\Auth\Handler:
+  authenticators:
+    - class: Sminnee\ApiKey\GraphQL\ApiKeyAuthenticator
+      priority: 30

@@ -5,6 +5,7 @@ namespace Sminnee\ApiKey\GraphQL;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\GraphQL\Auth\AuthenticatorInterface;
+use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Member;
 use Sminnee\ApiKey\ApiKeyRequestFilter;
 use Sminnee\ApiKey\MemberApiKey;
@@ -18,13 +19,14 @@ class ApiKeyAuthenticator implements AuthenticatorInterface
     public function authenticate(HTTPRequest $request)
     {
         $key = $this->getApiKeyHeader($request);
+        // This should not happen, unless ::authenticate is called without ::isApplicable
         if (!$key) {
-            return null;
+            throw new ValidationException('API key header not readable - please check system logs.');
         }
 
         $matchingKey = MemberApiKey::findByKey($key);
         if (!$matchingKey) {
-            return null;
+            throw new ValidationException('Specified API key was not found.');
         }
 
         $member = $matchingKey->Member();
@@ -33,7 +35,7 @@ class ApiKeyAuthenticator implements AuthenticatorInterface
             return $member;
         }
 
-        return null;
+        throw new ValidationException('Specified API key is not assigned to any members.');
     }
 
     public function isApplicable(HTTPRequest $request)

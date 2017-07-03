@@ -3,7 +3,8 @@
     "description": "API Key management for SilverStripe",
     "type": "silverstripe-module",
     "require": {
-        "silverstripe/framework": "^4.0@dev"
+        "silverstripe/framework": "^4.0.0-beta1",
+        "silverstripe/graphql": "^0.2.4"
     },
     "license": "BSD-3-Clause",
     "authors": [
@@ -21,7 +22,5 @@
         "psr-4": {
             "Sminnee\\ApiKey\\": "src/"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }

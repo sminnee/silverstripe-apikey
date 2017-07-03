@@ -20,7 +20,7 @@ use SilverStripe\ORM\DataModel;
  */
 class ApiKeyRequestFilter implements RequestFilter
 {
-    public function preRequest(HTTPRequest $request, Session $session, DataModel $model)
+    public function preRequest(HTTPRequest $request)
     {
         $headerName = Config::inst()->get(self::class, 'header_name');
 
@@ -50,7 +50,7 @@ class ApiKeyRequestFilter implements RequestFilter
         return true;
     }
 
-    public function postRequest(HTTPRequest $request, HTTPResponse $response, DataModel $model)
+    public function postRequest(HTTPRequest $request, HTTPResponse $response)
     {
         return true;
     }

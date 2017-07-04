@@ -19,7 +19,7 @@ class MemberApiKey extends DataObject
     ];
 
     private static $indexes = [
-        'ApiKeyIdx' => ['type' => 'unique', 'value' => '"ApiKey"' ],
+        'ApiKeyIdx' => ['type' => 'unique', 'columns' => ['ApiKey'] ],
     ];
 
     private static $has_one = [

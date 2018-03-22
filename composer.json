@@ -3,8 +3,8 @@
     "description": "API Key management for SilverStripe",
     "type": "silverstripe-module",
     "require": {
-        "silverstripe/framework": "^4.0.0-beta1",
-        "silverstripe/graphql": "^0.2.4"
+        "silverstripe/framework": "^4.0",
+        "silverstripe/graphql": "^1.0"
     },
     "license": "BSD-3-Clause",
     "authors": [

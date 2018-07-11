@@ -13,7 +13,7 @@ class MemberApiKey extends DataObject
     private static $table_name = 'MemberApiKey';
 
     private static $db = [
-        'ApiKey' => 'Varchar',
+        'ApiKey' => 'Varchar(48)',
         'LastUsed' => 'DBDatetime',
         'TimesUsed' => 'Int',
     ];

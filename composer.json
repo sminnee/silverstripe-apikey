@@ -4,7 +4,7 @@
     "type": "silverstripe-vendormodule",
     "require": {
         "silverstripe/framework": "^4.0",
-        "silverstripe/graphql": "^1.0",
+        "silverstripe/graphql": "2.0.1@stable",
         "silverstripe/vendor-plugin": "^1.0"
     },
     "license": "BSD-3-Clause",

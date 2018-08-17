@@ -7,6 +7,7 @@ use LogicException;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
+use SilverStripe\ORM\FieldType\DBDatetime;
 
 class MemberApiKey extends DataObject
 {
@@ -23,7 +24,7 @@ class MemberApiKey extends DataObject
     ];
 
     private static $has_one = [
-        'Member' => Member::class
+        'Member' => Member::class,
     ];
 
     private static $summary_fields = [
@@ -39,6 +40,7 @@ class MemberApiKey extends DataObject
 
     /**
      * MemberApiKey factory. Writes to the database.
+     *
      * @param int $memberID The member to create a key for
      * @return MemberApiKey
      */
@@ -56,7 +58,7 @@ class MemberApiKey extends DataObject
         }
 
         // Construct record
-        $obj = new MemberApiKey;
+        $obj = new MemberApiKey();
         $obj->MemberID = $memberID;
         $obj->ApiKey = $key;
         $obj->write();
@@ -88,7 +90,7 @@ class MemberApiKey extends DataObject
      */
     public function markUsed()
     {
-        $this->LastUsed = date('Y-m-d H:i:s');
+        $this->LastUsed = DBDatetime::now();
         $this->TimesUsed++;
         $this->write();
     }

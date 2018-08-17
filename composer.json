@@ -1,12 +1,6 @@
 {
     "name": "sminnee/silverstripe-apikey",
     "description": "API Key management for SilverStripe",
-    "type": "silverstripe-vendormodule",
-    "require": {
-        "silverstripe/framework": "^4.0",
-        "silverstripe/graphql": "2.0.1@stable",
-        "silverstripe/vendor-plugin": "^1.0"
-    },
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -14,6 +8,17 @@
             "email": "sam@silverstripe.com"
         }
     ],
+    "type": "silverstripe-vendormodule",
+    "require": {
+        "silverstripe/framework": "^4.0",
+        "silverstripe/graphql": "2.0.1@stable",
+        "silverstripe/vendor-plugin": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "^5.7",
+        "silverstripe/versioned": "^1.2",
+        "slevomat/coding-standard": "4.6"
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
@@ -21,7 +26,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Sminnee\\ApiKey\\": "src/"
+            "Sminnee\\ApiKey\\": "src/",
+            "Sminnee\\ApiKey\\UnitTests\\": "tests/unit/"
         }
+    },
+    "scripts": {
+        "testCoverage": "phpdbg -qrr -d memory_limit=-1 vendor/bin/phpunit --coverage-html=tests/coverage"
     }
 }

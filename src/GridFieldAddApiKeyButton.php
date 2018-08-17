@@ -6,7 +6,6 @@ use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_FormAction;
 use SilverStripe\Forms\GridField\GridField_HTMLProvider;
-use Sminnee\ApiKey\MemberApiKey;
 
 /**
  * Adds the API key creation button to a GridField

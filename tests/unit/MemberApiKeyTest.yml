@@ -1,0 +1,9 @@
+SilverStripe\Security\Member:
+  admin:
+    FirstName: APIuser
+    Email: admin@silverstripe.com
+    Password: error
+
+Sminnee\ApiKey\MemberApiKey:
+  duplicate1:
+    ApiKey: fakey

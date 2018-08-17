@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<ruleset name="SS4">
+    <description>Coding standard for SilverStripe 4.x</description>
+
+    <!-- Don't sniff third party libraries -->
+    <exclude-pattern>*/silverstripe-apikey/vendor/*</exclude-pattern>
+
+    <!-- Show progress and output sniff names on violation, and add colours -->
+    <arg value="sp"/>
+    <arg name="colors"/>
+
+    <!-- Use PSR-2 as a base standard -->
+    <rule ref="PSR2">
+        <!-- Allow classes to not declare a namespace -->
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+
+        <!-- Allow underscores in class names -->
+        <exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+
+        <!-- Allow non camel cased method names -->
+        <exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+    </rule>
+
+    <rule ref="Generic.Arrays.ArrayIndent"/>
+
+    <!-- All "use" statements must be used in the code. -->
+    <rule ref="./vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes"/>
+        <exclude name="SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowEqualOperators"/>
+        <exclude name="SlevomatCodingStandard.Classes.ClassConstantVisibility"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineAfterOpeningBrace"/>
+        <exclude name="SlevomatCodingStandard.Types.EmptyLinesAroundTypeBraces.NoEmptyLineBeforeClosingBrace"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
+        <exclude name="SlevomatCodingStandard.Commenting.RequireOneLinePropertyDocComment"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration"/>-->
+        <exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators"/>-->
+        <!-- allow private static -->
+        <exclude name="SlevomatCodingStandard.Classes.UnusedPrivateElements.UnusedProperty"/>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+        <properties>
+            <property name="searchAnnotations" type="bool" value="true"/>
+            <property name="ignoredAnnotationNames" type="array" value="@config"/>
+        </properties>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+        <properties>
+            <property name="rootNamespaces" type="array" value="src=>Sminnee\ApiKey,tests/unit=>Sminnee\ApiKey\UnitTests"/>
+        </properties>
+    </rule>
+
+</ruleset>

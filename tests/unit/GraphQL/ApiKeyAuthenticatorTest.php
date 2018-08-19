@@ -1,6 +1,6 @@
 <?php
 
-namespace Sminnee\ApiKey\UnitTests\GraphQL;
+namespace Sminnee\ApiKey\Tests\GraphQL;
 
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Security\Member;
@@ -45,7 +45,7 @@ class ApiKeyAuthenticatorTest extends SapphireTest
         ],
     ];
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         $this->member = $this->objFromFixture(Member::class, 'admin');
@@ -95,8 +95,10 @@ class ApiKeyAuthenticatorTest extends SapphireTest
             'Specified API key was not found.'
         );
         $authenticator->authenticate($request);
+    }
 
-        // dangling key
+    public function testDanglingKey()
+    {
         $request = new HTTPRequest('POST', Director::absoluteBaseURL() . '/graphql');
         $request = $request->addHeader($this->headerName, 'fakey');
         $authenticator = new ApiKeyAuthenticator();
@@ -118,7 +120,7 @@ class ApiKeyAuthenticatorTest extends SapphireTest
         $this->assertEquals('APIuser', $member->FirstName);
     }
 
-    public function testIntegration()
+    public function testIntegrationUnauthenticated()
     {
         // No key supplied
         $request = new HTTPRequest('POST', Director::absoluteBaseURL() . '/graphql');
@@ -138,7 +140,10 @@ class ApiKeyAuthenticatorTest extends SapphireTest
         $errors = $body->errors;
         $this->assertCount(1, $errors);
         $this->assertEquals('Authentication required', $errors[0]->message);
+    }
 
+    public function testIntegrationAuthenticated()
+    {
         // Successful Authentication but no Authorisation
         $request = new HTTPRequest('POST', Director::absoluteBaseURL() . '/graphql');
 

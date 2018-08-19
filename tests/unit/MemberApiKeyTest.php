@@ -1,6 +1,6 @@
 <?php
 
-namespace Sminnee\ApiKey\UnitTests;
+namespace Sminnee\ApiKey\Tests;
 
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Security\Member;
@@ -31,7 +31,7 @@ class MemberApiKeyTest extends SapphireTest
         ],
     ];
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         $this->member = $this->objFromFixture(Member::class, 'admin');
@@ -52,7 +52,7 @@ class MemberApiKeyTest extends SapphireTest
         /** @var MemberApiKey $key */
         $key = MemberApiKey::createKey($id);
 
-        $this->assertTrue($key instanceof MemberApiKey);
+        $this->assertInstanceOf(MemberApiKey::class, $key);
         $this->assertGreaterThan(0, strlen($key->ApiKey));
     }
 

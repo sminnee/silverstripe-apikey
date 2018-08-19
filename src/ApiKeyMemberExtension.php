@@ -16,9 +16,6 @@ class ApiKeyMemberExtension extends DataExtension
         'ApiKeys' => MemberApiKey::class,
     ];
 
-    /**
-     * @codeCoverageIgnore
-     */
     public function updateCMSFields(FieldList $fields)
     {
         $grid = $fields->dataFieldByName('ApiKeys');

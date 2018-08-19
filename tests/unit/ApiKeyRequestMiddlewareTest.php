@@ -1,6 +1,6 @@
 <?php
 
-namespace Sminnee\ApiKey\UnitTests;
+namespace Sminnee\ApiKey\Tests;
 
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Security\Member;
@@ -12,6 +12,7 @@ use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Security\Security;
+use stdClass;
 
 class ApiKeyRequestMiddlewareTest extends SapphireTest
 {
@@ -44,12 +45,23 @@ class ApiKeyRequestMiddlewareTest extends SapphireTest
         ],
     ];
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
         $this->member = $this->objFromFixture(Member::class, 'admin');
         $this->key = MemberApiKey::createKey($this->member->ID);
         $this->headerName = Config::inst()->get(ApiKeyRequestMiddlware::class, 'header_name');
+    }
+
+    private function createDelegate($count = 'once')
+    {
+        $delegate = $this->getMockBuilder(stdClass::class)
+            ->setMethods(['__invoke'])
+            ->getMock();
+        $delegate->expects($this->$count())
+            ->method('__invoke');
+
+        return $delegate;
     }
 
     public function testPassthroughProcess()
@@ -58,21 +70,15 @@ class ApiKeyRequestMiddlewareTest extends SapphireTest
         $request = new HTTPRequest('GET', Director::absoluteBaseURL() . '/api/v1');
         $middleware = new ApiKeyRequestMiddleware();
 
-        $calls = 0;
-        $delegate = function () use (&$calls) {
-            $calls++;
-        };
+        $delegate = $this->createDelegate();
+
         $middleware->process($request, $delegate);
-        $this->assertEquals(1, $calls);
     }
 
     public function testBadProcess()
     {
         Security::getCurrentUser()->logout();
-        $calls = 0;
-        $delegate = function () use (&$calls) {
-            $calls++;
-        };
+        $delegate = $this->createDelegate('never');
         $middleware = new ApiKeyRequestMiddleware();
 
         $this->expectException(HTTPResponse_Exception::class);
@@ -83,22 +89,17 @@ class ApiKeyRequestMiddlewareTest extends SapphireTest
         $request = new HTTPRequest('GET', Director::absoluteBaseURL() . '/api/v1');
         $request->addHeader($this->headerName, 'fakey');
         $middleware->process($request, $delegate);
-        $this->assertEquals(0, $calls);
     }
 
     public function testSuccessProcess()
     {
         Security::getCurrentUser()->logout();
-        $calls = 0;
-        $delegate = function () use (&$calls) {
-            $calls++;
-        };
+        $delegate = $this->createDelegate();
         $middleware = new ApiKeyRequestMiddleware();
 
         $request = new HTTPRequest('GET', Director::absoluteBaseURL() . '/api/v1');
         $request->addHeader($this->headerName, $this->key->ApiKey);
         $middleware->process($request, $delegate);
-        $this->assertEquals(1, $calls);
         $loggedInUser = Security::getCurrentUser();
         $this->assertEquals($this->member->ID, $loggedInUser->ID);
     }

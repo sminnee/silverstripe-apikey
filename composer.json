@@ -11,13 +11,12 @@
     "type": "silverstripe-vendormodule",
     "require": {
         "silverstripe/framework": "^4.0",
-        "silverstripe/graphql": "2.0.1@stable",
+        "silverstripe/graphql": "^1.0 || ^2.0",
         "silverstripe/vendor-plugin": "^1.0"
     },
     "require-dev": {
         "phpunit/PHPUnit": "^5.7",
-        "silverstripe/versioned": "^1.2",
-        "slevomat/coding-standard": "4.6"
+        "silverstripe/versioned": "^1.2"
     },
     "extra": {
         "branch-alias": {
@@ -27,7 +26,7 @@
     "autoload": {
         "psr-4": {
             "Sminnee\\ApiKey\\": "src/",
-            "Sminnee\\ApiKey\\UnitTests\\": "tests/unit/"
+            "Sminnee\\ApiKey\\Tests\\": "tests/unit/"
         }
     },
     "scripts": {

@@ -7,7 +7,7 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\GraphQL\Auth\AuthenticatorInterface;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Member;
-use Sminnee\ApiKey\ApiKeyRequestFilter;
+use Sminnee\ApiKey\ApiKeyRequestMiddlware;
 use Sminnee\ApiKey\MemberApiKey;
 
 /**
@@ -30,7 +30,7 @@ class ApiKeyAuthenticator implements AuthenticatorInterface
         }
 
         $member = $matchingKey->Member();
-        if ($member instanceof Member) {
+        if ($member instanceof Member && $member->exists()) {
             $matchingKey->markUsed();
             return $member;
         }
@@ -52,7 +52,7 @@ class ApiKeyAuthenticator implements AuthenticatorInterface
      */
     protected function getApiKeyHeader(HTTPRequest $request)
     {
-        $headerName = Config::inst()->get(ApiKeyRequestFilter::class, 'header_name');
+        $headerName = Config::inst()->get(ApiKeyRequestMiddlware::class, 'header_name');
 
         return $request->getHeader($headerName) ?: false;
     }

@@ -1,5 +1,5 @@
 mappings:
   ApiKeyMemberExtension: Sminnee\ApiKey\ApiKeyMemberExtension
-  ApiKeyRequestFilter: Sminnee\ApiKey\ApiKeyRequestFilter
+  ApiKeyRequestMiddleware: Sminnee\ApiKey\ApiKeyRequestMiddleware
   GridFieldAddApiKeyButton: Sminnee\ApiKey\GridFieldAddApiKeyButton
   MemberApiKey: Sminnee\ApiKey\MemberApiKey

@@ -9,7 +9,6 @@ use SilverStripe\Forms\GridField\GridFieldDeleteAction;
 use SilverStripe\Forms\GridField\GridFieldDetailForm;
 use SilverStripe\Forms\GridField\GridFieldEditButton;
 use SilverStripe\ORM\DataExtension;
-use Sminnee\ApiKey\MemberApiKey;
 
 class ApiKeyMemberExtension extends DataExtension
 {

@@ -8,6 +8,12 @@ and other APIs.
  * SilverStripe ^4.0
  * PHP 5.5+
 
+## Installation
+
+```
+composer require sminnee/silverstripe-apikey
+```
+
 ## How it works
 
  * Extensions the the `SecurityAdmin` provide interfaces for seeing API keys, and generating new ones. API keys are

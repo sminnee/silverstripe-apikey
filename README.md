@@ -1,5 +1,8 @@
 # SilverStripe API Key
 
+[![Build Status](https://travis-ci.org/sminnee/silverstripe-apikey.svg?branch=master)](https://travis-ci.org/sminnee/silverstripe-apikey)
+[![codecov](https://codecov.io/gh/sminnee/silverstripe-apikey/branch/master/graph/badge.svg)](https://codecov.io/gh/sminnee/silverstripe-apikey)
+
 This module provides a way of creating an managing API keys within SilverStripe. This can be useful for building RESTful
 and other APIs.
 

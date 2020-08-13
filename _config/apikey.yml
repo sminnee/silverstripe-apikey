@@ -5,7 +5,7 @@ SilverStripe\Security\Member:
   extensions:
     - Sminnee\ApiKey\ApiKeyMemberExtension
 
-Sminnee\ApiKey\ApiKeyRequestMiddlware:
+Sminnee\ApiKey\ApiKeyRequestMiddleware:
   header_name: 'X-Api-Key'
 
 # For regular requests, enable the RequestMiddleware (not for GraphQL):
@@ -14,9 +14,9 @@ Sminnee\ApiKey\ApiKeyRequestMiddlware:
 #   SilverStripe\Control\Director:
 #    properties:
 #      Middlewares:
-#        CustomMiddleware: %$ApiKeyRequestMiddlware
-#   ApiKeyRequestMiddlware:
-#     class: Sminnee\ApiKey\ApiKeyRequestMiddlware
+#        CustomMiddleware: %$ApiKeyRequestMiddleware
+#   ApiKeyRequestMiddleware:
+#     class: Sminnee\ApiKey\ApiKeyRequestMiddleware
 
 # For GraphQL requests, use the ApiKeyAuthenticator:
 SilverStripe\GraphQL\Auth\Handler:

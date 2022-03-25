@@ -6,8 +6,8 @@ use InvalidArgumentException;
 use LogicException;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\Security\Member;
 use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Security\Member;
 
 class MemberApiKey extends DataObject
 {
@@ -20,7 +20,7 @@ class MemberApiKey extends DataObject
     ];
 
     private static $indexes = [
-        'ApiKeyIdx' => ['type' => 'unique', 'columns' => ['ApiKey'] ],
+        'ApiKeyIdx' => ['type' => 'unique', 'columns' => ['ApiKey']],
     ];
 
     private static $has_one = [
@@ -90,7 +90,7 @@ class MemberApiKey extends DataObject
      */
     public function markUsed()
     {
-        $this->LastUsed = DBDatetime::now();
+        $this->LastUsed = DBDatetime::now()->Rfc2822();
         $this->TimesUsed++;
         $this->write();
     }
@@ -105,7 +105,7 @@ class MemberApiKey extends DataObject
         $keyLength = Config::inst()->get(self::class, 'key_length');
 
         for ($i = 0; $i < $keyLength; $i++) {
-            $key .= $src[rand(0, strlen($src)-1)];
+            $key .= $src[rand(0, strlen($src) - 1)];
         }
 
         return $key;

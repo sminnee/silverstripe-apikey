@@ -16,7 +16,7 @@ use Sminnee\ApiKey\MemberApiKey;
  */
 class ApiKeyAuthenticator implements AuthenticatorInterface
 {
-    public function authenticate(HTTPRequest $request)
+    public function authenticate(HTTPRequest $request): ?Member
     {
         $key = $this->getApiKeyHeader($request);
         // This should not happen, unless ::authenticate is called without ::isApplicable
@@ -38,7 +38,7 @@ class ApiKeyAuthenticator implements AuthenticatorInterface
         throw new ValidationException('Specified API key is not assigned to any members.');
     }
 
-    public function isApplicable(HTTPRequest $request)
+    public function isApplicable(HTTPRequest $request): bool
     {
         return (bool) $this->getApiKeyHeader($request);
     }

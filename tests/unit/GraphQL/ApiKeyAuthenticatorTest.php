@@ -11,7 +11,7 @@ use Sminnee\ApiKey\GraphQL\ApiKeyAuthenticator;
 use SilverStripe\GraphQL\Auth\Handler;
 use Sminnee\ApiKey\ApiKeyMemberExtension;
 use SilverStripe\Core\Config\Config;
-use Sminnee\ApiKey\ApiKeyRequestMiddlware;
+use Sminnee\ApiKey\ApiKeyRequestMiddleware;
 use SilverStripe\ORM\ValidationException;
 
 class ApiKeyAuthenticatorTest extends SapphireTest
@@ -50,7 +50,7 @@ class ApiKeyAuthenticatorTest extends SapphireTest
         parent::setUp();
         $this->member = $this->objFromFixture(Member::class, 'admin');
         $this->key = MemberApiKey::createKey($this->member->ID);
-        $this->headerName = Config::inst()->get(ApiKeyRequestMiddlware::class, 'header_name');
+        $this->headerName = Config::inst()->get(ApiKeyRequestMiddleware::class, 'header_name');
         Handler::config()->authenticators = [
             [
                 'class' => ApiKeyAuthenticator::class,

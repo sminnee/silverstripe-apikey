@@ -7,7 +7,6 @@ use SilverStripe\Security\Member;
 use Sminnee\ApiKey\MemberApiKey;
 use Sminnee\ApiKey\ApiKeyMemberExtension;
 use InvalidArgumentException;
-use SilverStripe\ORM\Connect\DatabaseException;
 use SilverStripe\ORM\FieldType\DBDatetime;
 
 class MemberApiKeyTest extends SapphireTest
@@ -69,7 +68,7 @@ class MemberApiKeyTest extends SapphireTest
         // should not be able to create a duplicate key
         $keyObject = MemberApiKey::create();
         $keyObject->ApiKey = 'fakey';
-        $this->expectException(DatabaseException::class);
+        $this->expectException("mysqli_sql_exception");
         $this->expectExceptionMessage(
             "Duplicate entry 'fakey'"
         );

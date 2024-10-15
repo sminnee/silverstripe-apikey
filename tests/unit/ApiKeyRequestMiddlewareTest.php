@@ -45,7 +45,7 @@ class ApiKeyRequestMiddlewareTest extends SapphireTest
         ],
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->member = $this->objFromFixture(Member::class, 'admin');
